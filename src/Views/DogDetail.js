@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { fetchDogById } from '../services/dogs';
 
 export default function DogDetail() {
@@ -19,15 +19,14 @@ export default function DogDetail() {
   return (
     <div>
       <h2>{dog.name}</h2>
-      <p>
-        Hi! I am {dog.name}!
-        <ul>
-          <li>Age: {dog.age}</li>
-          <li>Breed: {dog.breed}</li>
-        </ul>
-      </p>
+      <p>Hi! I am {dog.name}!</p>
+      <ul>
+        <li>Age: {dog.age}</li>
+        <li>Breed: {dog.breed}</li>
+      </ul>
       <img width="350px" src={dog.image} />
       <p>My trainers say I am `{dog.bio}`</p>
+      <Link to={`/dog/${dog.id}/edit`}>Edit Dog</Link>
     </div>
   );
 }

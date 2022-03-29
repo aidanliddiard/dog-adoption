@@ -3,6 +3,7 @@ import DogDetail from './Views/DogDetail';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NewDogPage from './Views/NewDogPage';
+import EditDogPage from './Views/EditDogPage';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route path="/new-dog">
             <NewDogPage />
+          </Route>
+          <Route path="/dog/:id/edit">
+            <EditDogPage />
           </Route>
         </Switch>
       </BrowserRouter>
