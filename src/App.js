@@ -1,7 +1,8 @@
-import Home from './Views/Home';
+import Home from './Views/DogList';
 import DogDetail from './Views/DogDetail';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import NewDogPage from './Views/NewDogPage';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
           </Route>
           <Route exact path="/dog/:id">
             <DogDetail />
+          </Route>
+          <Route path="/new-dog">
+            <NewDogPage />
           </Route>
         </Switch>
       </BrowserRouter>
