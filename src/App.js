@@ -1,4 +1,5 @@
 import Home from './Views/Home';
+import DogDetail from './Views/DogDetail';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -10,6 +11,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/dog/:id">
+            <DogDetail />
           </Route>
         </Switch>
       </BrowserRouter>
