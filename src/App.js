@@ -10,6 +10,7 @@ import SignInPage from './Views/SignInPage';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
+  console.log(currentUser);
 
   return (
     <div className="App">

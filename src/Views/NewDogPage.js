@@ -16,9 +16,9 @@ export default function NewDogPage() {
   const handleSubmit = async () => {
     try {
       await createNewDog({ name, age, breed, bio, image });
-      history.pushState('/dogs');
+      history.push('/');
     } catch (e) {
-      setError('Looks like something went wrong!');
+      setError(e.message);
     }
   };
 
