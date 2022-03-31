@@ -7,3 +7,9 @@ ul {
 li {
   padding: 10px;
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

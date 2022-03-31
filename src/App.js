@@ -1,7 +1,7 @@
 import Home from './Views/DogList';
 import DogDetail from './Views/DogDetail';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import NewDogPage from './Views/NewDogPage';
 import EditDogPage from './Views/EditDogPage';
 import { getUser } from './services/users';
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <h1>Adopt a Dog!</h1>
         <Switch>
           <Route exact path="/">
@@ -26,13 +26,11 @@ function App() {
             <SignInPage setCurrentUser={setCurrentUser} />
           </Route>
           <Route exact path="/dog/:id">
-            <DogDetail />
+            <DogDetail currentUser={currentUser} />
           </Route>
-          <Route path="/new-dog">
-            <NewDogPage />
-          </Route>
+          <Route path="/new-dog">{currentUser ? <NewDogPage /> : <Redirect to="/sign-in" />}</Route>
           <Route path="/dog/:id/edit">
-            <EditDogPage />
+            {currentUser ? <EditDogPage /> : <Redirect to="/sign-in" />}
           </Route>
         </Switch>
       </BrowserRouter>

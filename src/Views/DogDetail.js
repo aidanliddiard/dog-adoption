@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { deleteDogById, fetchDogById } from '../services/dogs';
 
-export default function DogDetail() {
+export default function DogDetail({ currentUser }) {
   const params = useParams();
 
   const [dog, setDog] = useState({});
@@ -37,9 +37,15 @@ export default function DogDetail() {
       </ul>
       <img width="350px" src={dog.image} />
       <p>My trainers say I am `{dog.bio}`</p>
-      <Link to={`/dog/${dog.id}/edit`}>Edit Dog</Link>
-      <button onClick={handleDelete}>Delete Dog</button>
-      {error && <p>{error}</p>}
+      {currentUser && (
+        <div>
+          <Link to={`/dog/${dog.id}/edit`}>Edit Dog</Link>
+          <p className="link" onClick={handleDelete}>
+            Delete Dog
+          </p>
+          {error && <p>{error}</p>}
+        </div>
+      )}
     </div>
   );
 }
