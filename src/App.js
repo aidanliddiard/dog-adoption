@@ -11,7 +11,6 @@ import Header from './components/Header';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
-  console.log(currentUser);
 
   return (
     <div className="App">
