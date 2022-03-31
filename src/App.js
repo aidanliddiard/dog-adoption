@@ -7,6 +7,7 @@ import EditDogPage from './Views/EditDogPage';
 import { getUser } from './services/users';
 import { useState } from 'react';
 import SignInPage from './Views/SignInPage';
+import Header from './components/Header';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
@@ -14,8 +15,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Adopt a Dog!</h1>
       <BrowserRouter>
+        <Header />
+        <h1>Adopt a Dog!</h1>
         <Switch>
           <Route exact path="/">
             <Home />

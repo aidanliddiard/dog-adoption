@@ -13,7 +13,7 @@ export default function SignInPage({ setCurrentUser }) {
     try {
       const resp = await signInUser(email, password);
       setCurrentUser(resp.email);
-      history.pushState('/');
+      history.push('/');
     } catch (e) {
       setError(e.message);
     }

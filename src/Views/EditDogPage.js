@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import DogForm from '../components/DogForm';
 import { editDogById, fetchDogById } from '../services/dogs';
+import { useHistory } from 'react-router-dom';
 
 export default function EditDogPage() {
   const params = useParams();
+  const history = useHistory();
 
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
@@ -30,9 +32,9 @@ export default function EditDogPage() {
   const handleSubmit = async () => {
     try {
       await editDogById({ name, breed, bio, image, age, id: params.id });
-      history.push(`/dogs/${params.id}`);
+      history.push(`/dog/${params.id}`);
     } catch (e) {
-      setError('Looks like something went wrong! ');
+      setError(e.message);
     }
   };
   return (
