@@ -9,11 +9,13 @@ export default function DogDetail({ currentUser }) {
   const [dog, setDog] = useState({});
   const [error, setError] = useState('');
   const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchDogById(params.id);
       setDog(data);
+      setLoading(false);
     };
     fetchData();
   }, [params.id]);
@@ -26,6 +28,8 @@ export default function DogDetail({ currentUser }) {
       setError(e.message);
     }
   };
+
+  if (loading) return <div className="loader"></div>;
 
   return (
     <div>
