@@ -1,23 +1,38 @@
-import logo from './logo.svg';
+import Home from './Views/DogList';
+import DogDetail from './Views/DogDetail';
 import './App.css';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import NewDogPage from './Views/NewDogPage';
+import EditDogPage from './Views/EditDogPage';
+import { getUser } from './services/users';
+import { useState } from 'react';
+import SignInPage from './Views/SignInPage';
+import Header from './components/Header';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(getUser());
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <h1>Adopt a Dog!</h1>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/sign-in">
+            <SignInPage setCurrentUser={setCurrentUser} />
+          </Route>
+          <Route exact path="/dog/:id">
+            <DogDetail currentUser={currentUser} />
+          </Route>
+          <Route path="/new-dog">{currentUser ? <NewDogPage /> : <Redirect to="/sign-in" />}</Route>
+          <Route path="/dog/:id/edit">
+            {currentUser ? <EditDogPage /> : <Redirect to="/sign-in" />}
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
