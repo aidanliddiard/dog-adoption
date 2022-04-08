@@ -32,6 +32,7 @@ export default function EditDogPage() {
   const handleSubmit = async () => {
     try {
       await editDogById({ name, breed, bio, image, age, id: params.id });
+      alert(`You successfully edited ${name}! 🐶`);
       history.push(`/dog/${params.id}`);
     } catch (e) {
       setError(e.message);

@@ -23,6 +23,7 @@ export default function DogDetail({ currentUser }) {
   const handleDelete = async () => {
     try {
       await deleteDogById(params.id);
+      alert(`You successfully deleted ${dog.name}... 🐶`);
       history.push('/');
     } catch (e) {
       setError(e.message);
